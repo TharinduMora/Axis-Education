@@ -1,0 +1,89 @@
+database:
+  driver: com.mysql.cj.jdbc.Driver
+#  url: jdbc:mysql://localhost:3306/axis_db?useSSL=true&useUnicode=true
+  url: jdbc:mysql://localhost:3306/axis_db?useSSL=true&useUnicode=true
+  ro_user: root
+  ro_password: Tvm+jgo8+Wog96CVdMDKNA==
+  rw_user: root
+  rw_password: Tvm+jgo8+Wog96CVdMDKNA==
+
+fbOAuthUrl: https://graph.facebook.com/me
+googleOAuthClients: -rm2roe52c3bg.apps.googleusercontent.com
+
+#image store S3 or FILE
+imageStorage: S3
+#folder to copy images in FILE mode
+imageRoot: empty
+#bucket to copy images in S3 mode
+awsAccessKey: awsAccessKey
+awsSecretKey: awsSecretKey
+s3Bucket: axis
+
+#Admin push notifications (should be network address not localhost or 127.0.0.1)
+pushHost: 127.0.0.1
+pushPort: 6073
+pushRoot: /axis-education-push/
+
+googleMapsApiKey: axis-education-google-map
+
+notificationThreadCount: 2
+
+server:
+  adminMinThreads: 2
+  adminMaxThreads: 2
+  minThreads: 100
+  maxThreads: 100
+  maxQueuedRequests: 1024
+
+  rootPath: /online-shop/*
+  adminContextPath: /online-shop/admin
+  applicationConnectors:
+    - type: http
+      port: 8081
+      bindHost: 0.0.0.0
+      headerCacheSize: 512 bytes
+      outputBufferSize: 32KiB
+      maxRequestHeaderSize: 8KiB
+      maxResponseHeaderSize: 8KiB
+      inputBufferSize: 8KiB
+      idleTimeout: 30 seconds
+      minBufferPoolSize: 64 bytes
+      bufferPoolIncrement: 1KiB
+      maxBufferPoolSize: 64KiB
+      acceptorThreads: 1
+      selectorThreads: 2
+      #acceptQueueSize: 1024
+      reuseAddress: true
+      soLingerTime: 345s
+      useServerHeader: false
+      useDateHeader: true
+      useForwardedHeaders: true
+  adminConnectors:
+    - type: http
+      port: 8082
+  requestLog:
+    appenders:
+      - type: console
+  gzip:
+    enabled: true
+    minimumEntitySize: 512B
+    bufferSize: 8KB
+
+swagger:
+  resourcePackage: com.teamtrace.axiseducation.controller
+
+jerseyClient:
+  minThreads: 5
+  maxThreads: 5
+  workQueueSize: 8
+  gzipEnabled: true
+  gzipEnabledForRequests: true
+  chunkedEncodingEnabled: true
+
+
+logging:
+  level: INFO
+  appenders:
+    - type: console
+
+

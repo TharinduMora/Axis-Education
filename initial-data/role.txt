@@ -1,0 +1,5 @@
+role merchant type
+
+system admin - 1, 3, 5, 7
+dealer - 2, 3, 5, 7
+service provider - 4, 5, 6, 7
